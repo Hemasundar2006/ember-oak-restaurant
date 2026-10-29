@@ -1,0 +1,394 @@
+/* Keep the viewport from becoming an overflow container so sticky sections
+   remain pinned in every browser while still preventing horizontal spill. */
+body {
+  overflow-x: clip;
+}
+
+.intro-credit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 18px;
+  color: #6f726b;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 7px;
+  font-style: normal;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.intro-credit::before,
+.intro-credit::after {
+  content: '';
+  width: 18px;
+  height: 1px;
+  background: rgba(255, 255, 255, .12);
+}
+
+.intro-credit b {
+  color: #aaa296;
+  font-family: 'Playfair Display', serif;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: .09em;
+}
+
+/* Let the menu cover the completed hero frame instead of exposing the dark
+   release tail during the final sticky viewport. */
+.menu-section {
+  margin-top: -100vh;
+  z-index: 8;
+}
+
+/* Editorial hero copy — designed as a restaurant masthead rather than a
+   generic marketing block. */
+.hero-copy {
+  top: 49%;
+  width: 43%;
+  max-width: 650px;
+}
+
+.hero-copy-swap {
+  animation: heroCopySwap .55s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+@keyframes heroCopySwap {
+  from {
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateY(calc(-47% + 14px));
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(-47%);
+  }
+}
+
+.hero-editorial {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  max-width: 575px;
+  margin-bottom: 28px;
+}
+
+.hero-editorial .kicker {
+  margin: 0;
+}
+
+.hero-editorial > small {
+  color: #7f8a80;
+  font-size: 7px;
+  font-weight: 600;
+  line-height: 1.65;
+  letter-spacing: .2em;
+  text-align: right;
+}
+
+.hero-copy h1 {
+  font-size: clamp(58px, 6.35vw, 101px);
+  line-height: .84;
+  letter-spacing: -.055em;
+}
+
+.hero-copy h1 span,
+.hero-copy h1 em {
+  display: inline-block;
+}
+
+.hero-copy h1 em {
+  margin-left: .48em;
+}
+
+.hero-lead {
+  position: relative;
+  max-width: 470px;
+  margin: 36px 0 28px 46px;
+  padding-left: 24px;
+  color: #c1c3ba;
+  font-family: 'Playfair Display';
+  font-size: 15px;
+  font-style: italic;
+  line-height: 1.75;
+}
+
+.hero-lead::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 1px;
+  height: calc(100% - 10px);
+  background: linear-gradient(var(--orange), rgba(216, 110, 61, .08));
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-left: 46px;
+}
+
+.hero-primary,
+.hero-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  transition: transform .25s, background .25s, color .25s;
+}
+
+.hero-primary {
+  min-height: 50px;
+  padding: 0 22px;
+  background: var(--orange);
+  color: #fff8ef;
+}
+
+.hero-primary b {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.hero-secondary {
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, .3);
+  color: #d4d5ce;
+}
+
+.hero-secondary span {
+  color: var(--orange);
+  font-size: 14px;
+}
+
+.hero-primary:hover,
+.hero-secondary:hover {
+  transform: translateY(-2px);
+}
+
+.hero-primary:focus-visible,
+.hero-secondary:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
+.hero-service {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  max-width: 475px;
+  margin: 36px 0 0 46px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, .12);
+}
+
+.hero-service div {
+  display: grid;
+  gap: 7px;
+}
+
+.hero-service small {
+  color: var(--orange);
+  font-size: 7px;
+  font-weight: 600;
+  letter-spacing: .2em;
+}
+
+.hero-service strong {
+  color: #a9afa8;
+  font-family: 'Playfair Display';
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.hero-service > i {
+  width: 1px;
+  height: 30px;
+  background: rgba(255, 255, 255, .12);
+}
+
+@media (max-width: 900px) {
+  .hero-copy {
+    top: 15%;
+    width: calc(100% - 48px);
+    max-width: 600px;
+  }
+
+  .hero-copy-swap {
+    animation-name: heroCopySwapMobile;
+  }
+
+  @keyframes heroCopySwapMobile {
+    from {
+      opacity: 0;
+      filter: blur(4px);
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      filter: blur(0);
+      transform: translateY(0);
+    }
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(50px, 13vw, 74px);
+  }
+
+  .hero-copy h1 em {
+    margin-left: .25em;
+  }
+
+  .hero-lead,
+  .hero-actions,
+  .hero-service {
+    margin-left: 26px;
+  }
+
+  .hero-lead {
+    max-width: min(500px, 82vw);
+  }
+}
+
+@media (max-width: 560px) {
+  .hero-copy {
+    left: 22px;
+    top: 13.5%;
+    width: calc(100% - 44px);
+  }
+
+  .hero-editorial {
+    margin-bottom: 18px;
+  }
+
+  .hero-editorial > small {
+    display: none;
+  }
+
+  .hero-editorial .kicker {
+    font-size: 8px;
+    letter-spacing: .2em;
+  }
+
+  .hero-editorial .kicker span {
+    width: 27px;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(42px, 12.4vw, 50px);
+    line-height: .88;
+    letter-spacing: -.045em;
+  }
+
+  .hero-copy h1 em {
+    margin-left: 0;
+  }
+
+  .hero-lead {
+    max-width: 300px;
+    margin: 20px 0 20px;
+    padding-left: 0;
+    color: #aeb5ad;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10.5px;
+    font-style: normal;
+    line-height: 1.65;
+  }
+
+  .hero-lead::before {
+    display: none;
+  }
+
+  .hero-actions {
+    margin-left: 0;
+  }
+
+  .hero-primary {
+    min-height: 46px;
+    padding: 0 20px;
+  }
+
+  .hero-secondary {
+    display: none;
+  }
+
+  .hero-service {
+    display: none;
+  }
+
+  .dish-stage {
+    top: 66%;
+    height: 42vh;
+  }
+
+  .dish-stage::before {
+    width: 76vw;
+    height: 76vw;
+  }
+
+  .dish-item {
+    width: min(69vw, 320px);
+    margin-left: calc(min(69vw, 320px) / -2);
+    margin-top: calc(min(69vw, 320px) / -2);
+  }
+
+  .dish-orbit {
+    width: min(67vw, 310px);
+  }
+
+  .dish-meta {
+    bottom: -8%;
+  }
+
+  .dish-meta h2 {
+    margin-top: 5px;
+    font-size: 21px;
+  }
+
+  .dish-meta p {
+    font-size: 9px;
+  }
+
+  .dish-meta b {
+    margin-top: 4px;
+    font-size: 11px;
+  }
+
+  .progress-dots {
+    right: 18px;
+    top: 34%;
+  }
+
+  .scroll-hint {
+    left: 20px;
+  }
+}
+
+@media (max-width: 560px) and (max-height: 740px) {
+  .hero-copy {
+    top: 12.5%;
+  }
+
+  .hero-editorial {
+    margin-bottom: 13px;
+  }
+
+  .hero-lead {
+    display: none;
+  }
+
+  .hero-actions {
+    margin-top: 18px;
+  }
+
+  .dish-stage {
+    top: 64%;
+  }
+}
